@@ -1,13 +1,15 @@
 package com.ufcg.psoft.mercadofacil;
 
-import com.ufcg.psoft.mercadofacil.model.Lote;
-import com.ufcg.psoft.mercadofacil.model.Produto;
+import com.ufcg.psoft.mercadofacil.Lote;
+import com.ufcg.psoft.mercadofacil.Produto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import java.util.List;
+import java.util.ArrayList;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -117,14 +119,14 @@ class VolatilLoteRepositoryTest {
         assertEquals(lote2,driver.find(lote2.getId().longValue()));
 
         assertEquals(lote8, armazenados.get(2));
-        assertEquals(null,armazenados.get(8L));
+        assertEquals(null,armazenados.get((int) 8L));
         assertEquals(null,driver.find(lote8.getId().longValue()));
 
         assertEquals(lote10, armazenados.get(3));
 
         boolean getError = false;
         try{
-            armazenados.get(10L);
+            armazenados.get((int) 10L);
         } catch (IndexOutOfBoundsException e) {
             getError = true;
         }
@@ -149,7 +151,7 @@ class VolatilLoteRepositoryTest {
 
     driver.save(lote);
     List<Lote> l1 = driver.findAll();
-    List<Lote> l2 = new ArrayList<>();
+    List<Lote> l2 = new ArrayList<Lote>();
     l2.add(lote);
     assertEquals(l1.size(),1);
     assertIterableEquals(l1,l2);
@@ -159,7 +161,7 @@ class VolatilLoteRepositoryTest {
     l1 = driver.findAll();
     l2.add(lote);
     l2.add(lote);
-    assertEquals(l1.size,3);
+    assertEquals(l1.size(),3);
     assertIterableEquals(l1,l2);
 
    }
@@ -179,7 +181,7 @@ class VolatilLoteRepositoryTest {
     assertEquals(driver.findAll().size(),3);
 
     driver.update(lote);
-    resultado = driver.find(lote);
+    resultado = driver.find(lote.getId());
     assertEquals(lote, resultado);
 
     resultado = driver.update(null);

@@ -2,24 +2,25 @@ package com.ufcg.psoft.mercadofacil;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
+//import java.util.NoSuchElementException;
+
 
 public class MercadoFacilRepository{
 
-    private Map<Integer,Produto> productRepository = new HashMap<Integer,Produto>();
+    private Map<Produto,Long> productRepository = new HashMap<Produto,Long>();
 	
-	void createProduct(String name, String brand, double price) {
-		Produto prod = new Produto(name,brand,price);
-		productRepository.put(prod.getId(), prod);
+	void createProduct(Long id, String name, double price, String codigoBarras, String fabricante) {
+		Produto prod = new Produto(id,name,price, codigoBarras, fabricante);
+		productRepository.put(prod,id);
 	}
 	
-	Produto recoverProduct(int p) {
-		if (productRepository.containsKey(p)) {
-			return productRepository.get(p);
-		} else {
-			throw new NoSuchElementException();
-		}
-	}
+//	Produto recoverProduct(Long prodId) {
+//		if (productRepository.containsValue(prodId)) {
+//			return productRepository.get(prodId);
+//		} else {
+//			throw new NoSuchElementException();
+//		}
+//	}
 	
 	void updateProduct(Produto p) {
 		

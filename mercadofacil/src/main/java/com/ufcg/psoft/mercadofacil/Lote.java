@@ -1,14 +1,32 @@
 package com.ufcg.psoft.mercadofacil;
 
-ublic class Lote {
+import lombok.Builder;
+import lombok.Data;
 
-    private Produto product;
-	private int quantity;
+@Data
+@Builder
+
+public class Lote {
+
+	private Long id;
+    private Produto produto;
+	private int quantidade;
 	
-	Lote(Produto product, int qtt){
+	Lote(Long id, Produto product, int qtt){
 		
-		this.product = product;
-		this.quantity = qtt;
+		this.id = id;
+		this.produto = product;
+		this.quantidade = qtt;
 		
+	}
+
+	public Produto getProduto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public int numeroDeItens(int i) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

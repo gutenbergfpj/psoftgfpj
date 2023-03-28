@@ -1,20 +1,28 @@
-com.ufcg.psoft.mercadofacil;
+package com.ufcg.psoft.mercadofacil;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 
 public class Produto {
-    
-    private String name;
-	private String brand;
-	private double price;
-	private Integer id;
 	
-	Produto(String name, String brand, double price){
-		this.name = name;
-		this.brand = brand;
-		this.price = price;
-		this.id = Integer.valueOf(name+brand);
+	private Long id;
+	private String nome;
+    private double preco;
+    private String codigoBarra;
+    private String fabricante;
+	
+	Produto(Long id, String nome, double price, String codigoBarras, String fabricante){
+		this.id = id;
+		this.nome = nome;
+		this.preco = price;
+		this.codigoBarra = codigoBarras;
+		this.fabricante = fabricante;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		//TODO
 		return this.id;
 	}
