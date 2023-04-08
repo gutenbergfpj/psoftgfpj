@@ -11,6 +11,10 @@ public class Utils {
 	}
 	
 	public boolean multipleStringChecker(String[] array) {
+		if (array.length == 0) {
+			return false;
+		}
+		
 		for (String s:array) {
 			if (stringChecker(s) == false) {
 				return false;
